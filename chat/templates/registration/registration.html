@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="web-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <h2 class="text-center">Django chat registration</h2>
+        <form method="POST" action="{% url 'registration' %}">
+        {% csrf_token %}
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" name="username" placeholder="Username">
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password1" placeholder="Password">
+          </div>
+          <div class="form-group">
+            <label>Repeat Password</label>
+            <input type="password" class="form-control" name="password2" placeholder="Repeat password">
+          </div>
+            <ul style="list-style-type:disc">
+              <b>
+                <li>Your password must contain at least 8 characters.</li>
+                <li>Your password can't be a commonly used password.</li>
+                <li>Your password can't be entirely numeric.</li>
+                <li>Your password must contain letters, digits and @/./+/-/_ only.</li>
+              </b>
+            </ul>
+
+            <button type="submit" class="btn btn-huge btn-primary btn-block mb">Register</button>
+         </form>
+      </div>
+     </div>
+   </div>
+  </div>
+</div>
+{% endblock %}

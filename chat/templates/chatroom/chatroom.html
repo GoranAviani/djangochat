@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="web-page">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="chat-info">
+          {% if queryChattingFromUser %}
+            {% for y in queryChattingFromUser %}
+              <h4>Hello  {{ y.username }}</h4>
+            {% endfor %}
+          {% endif %}
+
+          {% if queryChattingWithUser %}
+            {% for x in queryChattingWithUser %}
+              <h4>You are chatting with: {{ x.username }}</h4>
+            {% endfor %}
+          {% endif %}
+      </div>
+    </div>
+    <div class="col-md-4">
+
+        <div class="chat-text" id='messageBody'>
+          {% if messages_between_users %}
+            {% for text in messages_between_users %}
+              <h4>{{ text.message_text }}</h4>
+            {% endfor %}
+          {% endif %}
+        </div>
+
+          <form method="post">
+            {% csrf_token %}
+            {% for field in form_send_message %}
+              <p>
+                {{ field.label_tag }}<br>
+                <div class="chat-input">
+                {{ field }}</div>
+              </p>
+            {% endfor %}
+            <button type="submit" class="btn btn-huge btn-primary btn-block mbl">Send</button>
+          </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
